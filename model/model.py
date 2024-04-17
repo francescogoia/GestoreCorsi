@@ -18,5 +18,8 @@ class Model:
             if corso.pd == int(pd):
                 matricole_corso = corso.get_studenti()
                 if matricole_corso is None:
-                    pass
-        #        VEDERE SUA SOLUZIONE
+                    corso.Studenti = CorsoDao.get_studenti_singolo_corso(corso.codins)
+                    matricole_corso = corso.Studenti
+                # unione degli iscritti
+                matricole = matricole.union(matricole_corso)
+        return len(matricole)
